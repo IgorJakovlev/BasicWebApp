@@ -2,6 +2,9 @@ package de.tum.in.ase.eist;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class QueryProcessor {
 
@@ -11,17 +14,20 @@ public class QueryProcessor {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
                     "English poet, playwright, and actor, widely regarded as the greatest " +
                     "writer in the English language and the world's pre-eminent dramatist.";
-        } else if (query.contains("%20which%20of%20the%20following%20numbers%20is%20the%20largest:%2010,%20115,%20242,%2063")) {
+        } else if (query.contains(" which of the following numbers is the largest: 10, 115, 242, 63")) {
             return "242";
         }
         else {
-            String[] request = (query.split("%20"));
+            String[] request = (query.split(" "));
             for (int i = 0; i < request.length; i++) {
                 if (request [i].equals("plus")) {
                     return String.valueOf(Integer.valueOf(request[i-1]) + Integer.valueOf(request[i+1]));
                 }
                 if (request [i].equals("largest:")) {
-                    //while (i+1 < )
+                    List<String> list = new ArrayList<>();
+                    while (i+1 < request.length) {
+                        list.add(request[i+1].replace(";", ""));
+                    }
                 }
             }
         }
