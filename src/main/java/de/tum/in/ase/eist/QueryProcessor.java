@@ -3,6 +3,7 @@ package de.tum.in.ase.eist;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -26,12 +27,22 @@ public class QueryProcessor {
                 if (request [i].equals("largest:")) {
                     List<String> list = new ArrayList<>();
                     while (i+1 < request.length) {
-                        list.add(request[i+1].replace(";", ""));
+                        list.add(request[i + 1].replace(",", ""));
+                        i++;
                     }
+                    Iterator<String> iterator = list.iterator();
+                    String current = iterator.next();
+                    while (iterator.hasNext()) {
+                        String next = iterator.next();
+                        if (Integer.valueOf(current) < Integer.valueOf(next)) {
+                            current = next;
+                        }
+                    }
+                    return current;
                 }
             }
         }
-        return "";
+        return "failure";
     }
 }
 
