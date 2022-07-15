@@ -40,6 +40,9 @@ public class QueryProcessor {
                     }
                     return current;
                 }
+                if (request [i].equals("multiplied")) {
+                    return String.valueOf(Integer.valueOf(request[i-1]) * Integer.valueOf(request[i+2]));
+                }
             }
         }
         return "failure";
