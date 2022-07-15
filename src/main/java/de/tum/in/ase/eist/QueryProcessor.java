@@ -45,7 +45,7 @@ public class QueryProcessor {
                 }
             }
         }
-        return "failure";
+        return "";
     }
 }
 
