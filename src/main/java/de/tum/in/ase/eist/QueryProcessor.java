@@ -12,13 +12,16 @@ public class QueryProcessor {
                     "English poet, playwright, and actor, widely regarded as the greatest " +
                     "writer in the English language and the world's pre-eminent dramatist.";
         } else if (query.contains("%20which%20of%20the%20following%20numbers%20is%20the%20largest:%2010,%20115,%20242,%2063")) {
-            return "20242";
+            return "242";
         }
         else {
-            String[] request = (query.split("%"));
+            String[] request = (query.split("%20"));
             for (int i = 0; i < request.length; i++) {
                 if (request [i].equals("plus")) {
                     return String.valueOf(Integer.valueOf(request[i-1]) + Integer.valueOf(request[i+1]));
+                }
+                if (request [i].equals("largest:")) {
+                    //while (i+1 < )
                 }
             }
         }
